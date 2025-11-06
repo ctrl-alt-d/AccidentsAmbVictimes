@@ -51,14 +51,55 @@ Ara pots explorar i consultar les dades importades!
 
 ### Anàlisi de dades
 
-Ara que ja tens carregades les dades, respon a aquesta pregunta. Observa aquesta notícia:
+Ara que ja tens carregades les dades, prepara amb els companys alguna consulta sobre les dades, per exemple, després de llegir aquesta notícia:
 
 ![El punto kilométrico 333 de la AP-7, en donde hoy se ha registrado el accidente de un autobús ha causado la muerte de trece universitarias, no es un punto negro de siniestralidad, según diversas fuentes consultadas. https://www.lavanguardia.com/vida/20160320/40579951272/el-lugar-del-accidente-en-la-ap-7-no-es-un-punto-negro-de-siniestralidad.html](./imgs/LaVanguardia.png)
 
-I respon a les preguntes:
-* En quin punt exactament va ser l'accident?
-* És aquest punt un punt negre de sinistralitat?
+Buquem quin va ser el punt quilomètric exacte i també si al voltant d'aquell punt kilomètric hi ha hagut altres accidents:
 
+![Captura de pantalla del dbeaver on fem una agregació dels accidents propers a aquell punt quilomètric](./imgs/ConsultaDbeaver.png)
+
+<details>
+
+<summary>Consulta i resultat</summary>
+```sql
+select
+	sum(f_morts) as morts,
+	sum(f_victimes) as victimes,
+	pk as "Punt quilomètric"
+FROM accidents
+where via='AP-7' and pk between 320 and 340
+group by via, pk
+order by 1 desc,2 desc
+```
+
+**Resultats:**
+
+| Morts | Víctimes | Punt quilomètric |
+|-------|----------|------------------|
+| 13 | 49 | 333.2 |
+| 1 | 10 | 328.1 |
+| 1 | 2 | 332.6 |
+| 1 | 2 | 321 |
+| 1 | 1 | 336.8 |
+| 1 | 1 | 336.7 |
+| 1 | 1 | 324.5 |
+| 1 | 1 | 334.3 |
+| 0 | 17 | 330 |
+| 0 | 10 | 325 |
+| 0 | 5 | 328 |
+| 0 | 4 | 332.5 |
+| 0 | 2 | 320.2 |
+| 0 | 2 | 322.9 |
+| 0 | 2 | 332.2 |
+| 0 | 2 | 337 |
+| 0 | 1 | 330.8 |
+| 0 | 1 | 336.5 |
+| 0 | 1 | 323 |
+| 0 | 1 | 322.3 |
+| 0 | 1 | 332.4 |
+
+</details>
 
 ---
 
