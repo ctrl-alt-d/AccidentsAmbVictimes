@@ -56,6 +56,36 @@ public class CSVReader : IDisposable
             return null;
         }
     }
+    
+    // Convertidor personalizado para TimeOnly desde formato h.m o hh.mm
+    public class TimeOnlyConverter : DefaultTypeConverter
+    {
+        public override object? ConvertFromString(string? text, IReaderRow row, MemberMapData memberMapData)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return TimeOnly.MinValue;
+            }
+            
+            // Dividir por el punto para separar horas y minutos
+            var parts = text.Split('.');
+            if (parts.Length != 2)
+            {
+                return TimeOnly.MinValue;
+            }
+            
+            if (int.TryParse(parts[0], out int hours) && int.TryParse(parts[1], out int minutes))
+            {
+                // Validar rangos
+                if (hours >= 0 && hours <= 23 && minutes >= 0 && minutes <= 59)
+                {
+                    return new TimeOnly(hours, minutes);
+                }
+            }
+            
+            return TimeOnly.MinValue;
+        }
+    }
 
     public List<Accident> ReadCSV(string filePath)
     {
@@ -76,6 +106,7 @@ public class CSVReader : IDisposable
         // Registrar convertidores personalizados
         _csvReader.Context.TypeConverterCache.AddConverter<int?>(new NullableIntConverter());
         _csvReader.Context.TypeConverterCache.AddConverter<decimal?>(new NullableDecimalConverter());
+        _csvReader.Context.TypeConverterCache.AddConverter<TimeOnly>(new TimeOnlyConverter());
         
         _csvReader.Context.TypeConverterOptionsCache.GetOptions<DateTime>().Formats = ["dd/MM/yyyy"];
         

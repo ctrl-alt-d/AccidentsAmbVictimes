@@ -108,13 +108,13 @@ public class Accident
     [Column("d_lluminositat")]
     public string D_LLUMINOSITAT { get; set; } = string.Empty;
     [Column("d_regulacio_prioritat")]
-    public string D_REGULACIO_PRIORITAT { get; set; } = string.Empty;
+    public string? D_REGULACIO_PRIORITAT { get; set; } = string.Empty;
     [Column("d_sentits_via")]
-    public string D_SENTITS_VIA { get; set; } = string.Empty;
+    public string? D_SENTITS_VIA { get; set; } = string.Empty;
     [Column("d_subtipus_accident")]
     public string D_SUBTIPUS_ACCIDENT { get; set; } = string.Empty;
     [Column("d_subtipus_tram")]
-    public string D_SUBTIPUS_TRAM { get; set; } = string.Empty;
+    public string? D_SUBTIPUS_TRAM { get; set; } = string.Empty;
     [Column("d_subzona")]
     public string D_SUBZONA { get; set; } = string.Empty;
     [Column("d_superficie")]
@@ -122,15 +122,15 @@ public class Accident
     [Column("d_tipus_via")]
     public string D_TIPUS_VIA { get; set; } = string.Empty;
     [Column("d_titularitat_via")]
-    public string D_TITULARITAT_VIA { get; set; } = string.Empty;
+    public string? D_TITULARITAT_VIA { get; set; } = string.Empty;
     [Column("d_tracat_altimetric")]
-    public string D_TRACAT_ALTIMETRIC { get; set; } = string.Empty;
+    public string? D_TRACAT_ALTIMETRIC { get; set; } = string.Empty;
     [Column("d_vent")]
     public string D_VENT { get; set; } = string.Empty;
     [Column("grupdialab")]
     public string GrupDiaLab { get; set; } = string.Empty;
     [Column("hor")]
-    public string Hor { get; set; } = string.Empty;
+    public TimeOnly Hor { get; set; } = default!;
     [Column("gruphor")]
     public string GrupHor { get; set; } = string.Empty;
     [Column("tipacc")]
