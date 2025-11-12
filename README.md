@@ -5,6 +5,8 @@
 
 Projecte per importar i analitzar dades d'accidents de trànsit amb víctimes a Catalunya.
 
+![Gat accidentat](./Kahoot/p-1.png)
+
 La darrera versió de les dades es pot descarregar des de:
 
 👉 [Accidents de trànsit amb morts o ferits greus a Catalunya (Dades Obertes)](https://analisi.transparenciacatalunya.cat/Transport/Accidents-de-tr-nsit-amb-morts-o-ferits-greus-a-Ca/rmgc-ncpb/about_data)
