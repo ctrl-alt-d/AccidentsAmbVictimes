@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Microsoft.Extensions.Logging;
 
 namespace importa;
@@ -22,6 +23,7 @@ public class Orquestrador
 
     public void Go()
     {
+        var stopwatch = Stopwatch.StartNew();
 
         logger.LogInformation("No hi ha dades. Iniciant procés d'importació...");
 
@@ -30,6 +32,11 @@ public class Orquestrador
         var accidents = reader.ReadCSV(rutaFitxer);
         logger.LogInformation("S'han llegit {NumAccidents} accidents del fitxer CSV", accidents.Count());
 
+        // Netejar les dades
+        logger.LogInformation("Netejant les dades...");
+        cleaner.CleanDataset(accidents);
+        logger.LogInformation("Les dades s'han netejat correctament.");
+
         // Crear la base de dades i la taula
         logger.LogInformation("Recreant la base de dades i la taula ...");
         context.Database.EnsureDeleted();
@@ -37,9 +44,12 @@ public class Orquestrador
 
         logger.LogInformation("Inserint les dades a la base de dades...");
         // Inserir les dades a la base de dades
+        var numAccidents = accidents.Count();
         context.AddRange(accidents);
         context.SaveChanges();
         
-        logger.LogInformation("Dades inserides correctament a la base de dades");
+        stopwatch.Stop();
+        logger.LogInformation("S'han inserit {NumAccidents} registres correctament a la base de dades en {TempsTrigat:F2} segons", 
+            numAccidents, stopwatch.Elapsed.TotalSeconds);
     }
 }

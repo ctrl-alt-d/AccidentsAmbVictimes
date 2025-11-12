@@ -66,67 +66,67 @@ public class Accident
     [Column("c_velocitat_via")]
     public int? C_VELOCITAT_VIA { get; set; }
     [Column("d_acc_amb_fuga")]
-    public string D_ACC_AMB_FUGA { get; set; } = string.Empty;
+    public string? D_ACC_AMB_FUGA { get; set; } = string.Empty;
     [Column("d_boira")]
-    public string D_BOIRA { get; set; } = string.Empty;
+    public string? D_BOIRA { get; set; } = string.Empty;
     [Column("d_caract_entorn")]
-    public string D_CARACT_ENTORN { get; set; } = string.Empty;
+    public string? D_CARACT_ENTORN { get; set; } = string.Empty;
     [Column("d_carril_especial")]
-    public string D_CARRIL_ESPECIAL { get; set; } = string.Empty;
+    public string? D_CARRIL_ESPECIAL { get; set; } = string.Empty;
     [Column("d_circulacio_mesures_esp")]
-    public string D_CIRCULACIO_MESURES_ESP { get; set; } = string.Empty;
+    public string? D_CIRCULACIO_MESURES_ESP { get; set; } = string.Empty;
     [Column("d_climatologia")]
-    public string D_CLIMATOLOGIA { get; set; } = string.Empty;
+    public string? D_CLIMATOLOGIA { get; set; } = string.Empty;
     [Column("d_func_esp_via")]
-    public string D_FUNC_ESP_VIA { get; set; } = string.Empty;
+    public string? D_FUNC_ESP_VIA { get; set; } = string.Empty;
     [Column("d_gravetat")]
-    public string D_GRAVETAT { get; set; } = string.Empty;
+    public string? D_GRAVETAT { get; set; } = string.Empty;
     [Column("d_influit_boira")]
-    public string D_INFLUIT_BOIRA { get; set; } = string.Empty;
+    public string? D_INFLUIT_BOIRA { get; set; } = string.Empty;
     [Column("d_influit_caract_entorn")]
-    public string D_INFLUIT_CARACT_ENTORN { get; set; } = string.Empty;
+    public string? D_INFLUIT_CARACT_ENTORN { get; set; } = string.Empty;
     [Column("d_influit_circulacio")]
-    public string D_INFLUIT_CIRCULACIO { get; set; } = string.Empty;
+    public string? D_INFLUIT_CIRCULACIO { get; set; } = string.Empty;
     [Column("d_influit_estat_clima")]
-    public string D_INFLUIT_ESTAT_CLIMA { get; set; } = string.Empty;
+    public string? D_INFLUIT_ESTAT_CLIMA { get; set; } = string.Empty;
     [Column("d_influit_inten_vent")]
-    public string D_INFLUIT_INTEN_VENT { get; set; } = string.Empty;
+    public string? D_INFLUIT_INTEN_VENT { get; set; } = string.Empty;
     [Column("d_influit_lluminositat")]
-    public string D_INFLUIT_LLUMINOSITAT { get; set; } = string.Empty;
+    public string? D_INFLUIT_LLUMINOSITAT { get; set; } = string.Empty;
     [Column("d_influit_mesu_esp")]
-    public string D_INFLUIT_MESU_ESP { get; set; } = string.Empty;
+    public string? D_INFLUIT_MESU_ESP { get; set; } = string.Empty;
     [Column("d_influit_obj_calcada")]
-    public string D_INFLUIT_OBJ_CALCADA { get; set; } = string.Empty;
+    public string? D_INFLUIT_OBJ_CALCADA { get; set; } = string.Empty;
     [Column("d_influit_solcs_rases")]
-    public string D_INFLUIT_SOLCS_RASES { get; set; } = string.Empty;
+    public string? D_INFLUIT_SOLCS_RASES { get; set; } = string.Empty;
     [Column("d_influit_visibilitat")]
-    public string D_INFLUIT_VISIBILITAT { get; set; } = string.Empty;
+    public string? D_INFLUIT_VISIBILITAT { get; set; } = string.Empty;
     [Column("d_inter_seccio")]
-    public string D_INTER_SECCIO { get; set; } = string.Empty;
+    public string? D_INTER_SECCIO { get; set; } = string.Empty;
     [Column("d_limit_velocitat")]
-    public string D_LIMIT_VELOCITAT { get; set; } = string.Empty;
+    public string? D_LIMIT_VELOCITAT { get; set; } = string.Empty;
     [Column("d_lluminositat")]
-    public string D_LLUMINOSITAT { get; set; } = string.Empty;
+    public string? D_LLUMINOSITAT { get; set; } = string.Empty;
     [Column("d_regulacio_prioritat")]
     public string? D_REGULACIO_PRIORITAT { get; set; } = string.Empty;
     [Column("d_sentits_via")]
     public string? D_SENTITS_VIA { get; set; } = string.Empty;
     [Column("d_subtipus_accident")]
-    public string D_SUBTIPUS_ACCIDENT { get; set; } = string.Empty;
+    public string? D_SUBTIPUS_ACCIDENT { get; set; } = string.Empty;
     [Column("d_subtipus_tram")]
     public string? D_SUBTIPUS_TRAM { get; set; } = string.Empty;
     [Column("d_subzona")]
-    public string D_SUBZONA { get; set; } = string.Empty;
+    public string? D_SUBZONA { get; set; } = string.Empty;
     [Column("d_superficie")]
-    public string D_SUPERFICIE { get; set; } = string.Empty;
+    public string? D_SUPERFICIE { get; set; } = string.Empty;
     [Column("d_tipus_via")]
-    public string D_TIPUS_VIA { get; set; } = string.Empty;
+    public string? D_TIPUS_VIA { get; set; } = string.Empty;
     [Column("d_titularitat_via")]
     public string? D_TITULARITAT_VIA { get; set; } = string.Empty;
     [Column("d_tracat_altimetric")]
     public string? D_TRACAT_ALTIMETRIC { get; set; } = string.Empty;
     [Column("d_vent")]
-    public string D_VENT { get; set; } = string.Empty;
+    public string? D_VENT { get; set; } = string.Empty;
     [Column("grupdialab")]
     public string GrupDiaLab { get; set; } = string.Empty;
     [Column("hor")]
