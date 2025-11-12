@@ -10,7 +10,7 @@
 kahoot*.md
 kahoot*.pdf
 
-
+.DS_Store
 
 # Build results
 [Dd]ebug/
