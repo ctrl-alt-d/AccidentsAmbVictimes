@@ -3,7 +3,7 @@
 
 ## Descripció
 
-<img align="left" src="./Kahoot/p-1.png" alt="Gat accidentat" width="150" style="margin-right: 15px;"/>
+<img align="left" src="./Kahoot/p-1.png" alt="Gat accidentat. Imatge de decoració" width="100" style="margin-right: 15px;"/>
 
 [Cat] Dataset d'[accidents de trànsit amb víctimes a Catalunya](https://analisi.transparenciacatalunya.cat/Transport/Accidents-de-tr-nsit-amb-morts-o-ferits-greus-a-Ca/rmgc-ncpb/about_data) carregat a una base de dades (Postgres, MySql o MSSqlServer) amb objectius acadèmics. Permet treballar les consules sql (projecció, selecció, agregats, funcions amb dates, etc). Totes les dades són a una sola taula. Disponible [Kahoot](#kahoot).
 
