@@ -1,11 +1,13 @@
 services:
+  # Per defecte (sense profiles) només s'engega Postgres + importador
   postgres:
+    profiles: ["postgres"]
     image: postgres:17
     container_name: accidents-postgres
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123456
-      POSTGRES_DB: postgres
+      POSTGRES_DB: victimes
     ports:
       - "127.0.0.1:5432:5432"
     volumes:
@@ -16,16 +18,81 @@ services:
       timeout: 5s
       retries: 5
 
-  importador:
+  mysql:
+    profiles: ["mysql"]
+    image: mysql:8.4
+    container_name: accidents-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: victimes
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  sqlserver:
+    profiles: ["sqlserver"]
+    image: mcr.microsoft.com/azure-sql-edge:latest
+    container_name: accidents-sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "Str0ngPass!"
+    ports:
+      - "127.0.0.1:1433:1433"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "grep -q 'SQL Server is now ready for client connections' /var/opt/mssql/log/errorlog"]
+      interval: 15s
+      timeout: 5s
+      retries: 40
+      start_period: 30s
+
+  importador-postgres:
+    profiles: ["postgres"]
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: accidents-importador
+    container_name: accidents-importador-postgres
+    environment:
+      - DbBrandParam=postgres
+      - ConnectionStringParam=${CONNECTION_STRING:-}
     depends_on:
       postgres:
         condition: service_healthy
+
+  importador-mysql:
+    profiles: ["mysql"]
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: accidents-importador-mysql
     environment:
-      - ConnectionStringParam=Host=postgres;Port=5432;Username=postgres;Password=123456;Database=victimes
+      - DbBrandParam=mysql
+      - ConnectionStringParam=${CONNECTION_STRING:-}
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  importador-sqlserver:
+    profiles: ["sqlserver"]
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: accidents-importador-sqlserver
+    environment:
+      - DbBrandParam=sqlserver
+      - ConnectionStringParam=${CONNECTION_STRING:-}
+    depends_on:
+      sqlserver:
+        condition: service_healthy
 
 volumes:
   postgres-data:
+  mysql-data:
+  sqlserver-data:

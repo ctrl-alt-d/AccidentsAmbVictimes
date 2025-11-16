@@ -17,91 +17,103 @@ Descarrega el fitxer CSV i col·loca'l a la carpeta `Data/` si vols actualitzar 
 
 ## Com engegar l'entorn
 
-1. **Assegura't de tenir [Docker](https://www.docker.com/) instal·lat.**
-2. Obre un terminal a la carpeta del projecte i executa:
+Aquest projecte suporta **PostgreSQL**, **MySQL** i **SQL Server** (Azure SQL Edge). Pots seleccionar el gestor de base de dades que vulguis utilitzar.
 
-```sh
-docker-compose up
+### Prerequisits
+
+- **[Docker](https://www.docker.com/)** instal·lat i en funcionament
+
+### Ús ràpid (macOS / Linux)
+
+Utilitza l'script `compose-db.sh` per seleccionar la base de dades:
+
+```bash
+# PostgreSQL (per defecte)
+./compose-db.sh --db postgres up --build
+
+# MySQL
+./compose-db.sh --db mysql up --build
+
+# SQL Server (Azure SQL Edge)
+./compose-db.sh --db sqlserver up --build
 ```
 
->Això posarà en marxa:
->- Una base de dades PostgreSQL (usuari: `postgres`, contrasenya: `123456`, port: `5432`)
->- Un contenidor que importa les dades al PostgreSQL
+**Forma curta:**
 
-3. Pots aturar l'entorn amb `Ctrl+C` i, si vols eliminar els contenidors i dades, executa:
+```bash
+./compose-db.sh postgres up --build
+./compose-db.sh mysql up --build
+./compose-db.sh sqlserver up --build
+```
 
-```sh
-docker-compose down -v
+### Ús en Windows (PowerShell)
+
+```powershell
+# PostgreSQL
+./compose-db.ps1 -Db postgres up --build
+
+# MySQL
+./compose-db.ps1 -Db mysql up --build
+
+# SQL Server
+./compose-db.ps1 -Db sqlserver up --build
+```
+
+### Configuració manual (sense wrappers)
+
+Si prefereixes usar directament `docker compose`:
+
+```bash
+# PostgreSQL
+docker compose --profile postgres up --build
+
+# MySQL
+docker compose --profile mysql up --build
+
+# SQL Server
+docker compose --profile sqlserver up --build
+```
+
+### Aturar i netejar l'entorn
+
+```bash
+# Aturar contenidors
+docker compose down
+
+# Eliminar contenidors i dades persistents
+docker compose down -v
 ```
 
 ---
 
 ## Connexió a la base de dades des de DBeaver
 
-1. Obre DBeaver i crea una nova connexió PostgreSQL.
-2. Paràmetres de connexió:
-	- **Host:** `localhost`
-	- **Port:** `5432`
-	- **Usuari:** `postgres`
-	- **Contrasenya:** `123456`
-	- **Base de dades:** `victimes`
-3. Fes clic a "Test Connection" per comprovar que tot funciona.
+### PostgreSQL
 
-Ara pots explorar i consultar les dades importades!
+- **Host:** `localhost`
+- **Port:** `5432`
+- **Usuari:** `postgres`
+- **Contrasenya:** `123456`
+- **Base de dades:** `victimes`
 
----
+### MySQL
 
-### Anàlisi de dades
+- **Host:** `localhost`
+- **Port:** `3306`
+- **Usuari:** `root`
+- **Contrasenya:** `123456`
+- **Base de dades:** `victimes`
 
-Ara que ja tens carregades les dades, prepara amb els companys alguna consulta sobre les dades, per exemple, després de llegir aquesta notícia:
+### SQL Server (Azure SQL Edge)
 
-![El punto kilométrico 333 de la AP-7, en donde hoy se ha registrado el accidente de un autobús ha causado la muerte de trece universitarias, no es un punto negro de siniestralidad, según diversas fuentes consultadas. https://www.lavanguardia.com/vida/20160320/40579951272/el-lugar-del-accidente-en-la-ap-7-no-es-un-punto-negro-de-siniestralidad.html](./imgs/LaVanguardia.png)
+- **Host:** `localhost`
+- **Port:** `1433`
+- **Usuari:** `sa`
+- **Contrasenya:** `Str0ngPass!`
+- **Base de dades:** `victimes`
 
-Buquem quin va ser el punt quilomètric exacte i també si al voltant d'aquell punt kilomètric hi ha hagut altres accidents:
+Fes clic a "Test Connection" per comprovar que tot funciona. Ara pots explorar i consultar les dades importades!
 
-![Captura de pantalla del dbeaver on fem una agregació dels accidents propers a aquell punt quilomètric](./imgs/ConsultaDbeaver.png)
-
-<details>
-
-<summary>Consulta i resultat</summary>
-```sql
-select
-	sum(f_morts) as morts,
-	sum(f_victimes) as victimes,
-	pk as "Punt quilomètric"
-FROM accidents
-where via='AP-7' and pk between 320 and 340
-group by via, pk
-order by 1 desc,2 desc
-```
-
-**Resultats:**
-
-| Morts | Víctimes | Punt quilomètric |
-|-------|----------|------------------|
-| 13 | 49 | 333.2 |
-| 1 | 10 | 328.1 |
-| 1 | 2 | 332.6 |
-| 1 | 2 | 321 |
-| 1 | 1 | 336.8 |
-| 1 | 1 | 336.7 |
-| 1 | 1 | 324.5 |
-| 1 | 1 | 334.3 |
-| 0 | 17 | 330 |
-| 0 | 10 | 325 |
-| 0 | 5 | 328 |
-| 0 | 4 | 332.5 |
-| 0 | 2 | 320.2 |
-| 0 | 2 | 322.9 |
-| 0 | 2 | 332.2 |
-| 0 | 2 | 337 |
-| 0 | 1 | 330.8 |
-| 0 | 1 | 336.5 |
-| 0 | 1 | 323 |
-| 0 | 1 | 322.3 |
-| 0 | 1 | 332.4 |
-
-</details>
 
 ---
 
@@ -207,6 +219,67 @@ La base de dades conté informació detallada sobre accidents de trànsit amb v�
 | `grupdialab` | Dia laborable o feiner | Text |
 | `tipdia` | Dia de la setmana en què s'ha produït l'accident | Text |
 
+---
+
+### Kahoot
+
+[Kahoot - SQL - Accidents amb víctimes](https://create.kahoot.it/share/sql-accidents-amb-victimes/e7e9e633-fddc-4b36-b0e0-a190aa984119)
+
+![Kahoot](./imgs/kahoot.png)
+
+
+
+### Anàlisi de dades
+
+Ara que ja tens carregades les dades, prepara amb els companys alguna consulta sobre les dades, per exemple, després de llegir aquesta notícia:
+
+![El punto kilométrico 333 de la AP-7, en donde hoy se ha registrado el accidente de un autobús ha causado la muerte de trece universitarias, no es un punto negro de siniestralidad, según diversas fuentes consultadas. https://www.lavanguardia.com/vida/20160320/40579951272/el-lugar-del-accidente-en-la-ap-7-no-es-un-punto-negro-de-siniestralidad.html](./imgs/LaVanguardia.png)
+
+Buquem quin va ser el punt quilomètric exacte i també si al voltant d'aquell punt kilomètric hi ha hagut altres accidents:
+
+![Captura de pantalla del dbeaver on fem una agregació dels accidents propers a aquell punt quilomètric](./imgs/ConsultaDbeaver.png)
+
+<details>
+
+<summary>Consulta i resultat</summary>
+```sql
+select
+	sum(f_morts) as morts,
+	sum(f_victimes) as victimes,
+	pk as "Punt quilomètric"
+FROM accidents
+where via='AP-7' and pk between 320 and 340
+group by via, pk
+order by 1 desc,2 desc
+```
+
+**Resultats:**
+
+| Morts | Víctimes | Punt quilomètric |
+|-------|----------|------------------|
+| 13 | 49 | 333.2 |
+| 1 | 10 | 328.1 |
+| 1 | 2 | 332.6 |
+| 1 | 2 | 321 |
+| 1 | 1 | 336.8 |
+| 1 | 1 | 336.7 |
+| 1 | 1 | 324.5 |
+| 1 | 1 | 334.3 |
+| 0 | 17 | 330 |
+| 0 | 10 | 325 |
+| 0 | 5 | 328 |
+| 0 | 4 | 332.5 |
+| 0 | 2 | 320.2 |
+| 0 | 2 | 322.9 |
+| 0 | 2 | 332.2 |
+| 0 | 2 | 337 |
+| 0 | 1 | 330.8 |
+| 0 | 1 | 336.5 |
+| 0 | 1 | 323 |
+| 0 | 1 | 322.3 |
+| 0 | 1 | 332.4 |
+
+</details>
 
 ---
 
