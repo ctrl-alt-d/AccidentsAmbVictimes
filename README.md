@@ -190,13 +190,13 @@ La base de dades conté informació detallada sobre accidents de trànsit amb v�
 
 ---
 
-### Kahoot
+## Kahoot
 
 [Kahoot - SQL - Accidents amb víctimes](https://create.kahoot.it/share/sql-accidents-amb-victimes/e7e9e633-fddc-4b36-b0e0-a190aa984119)
 
 ![Kahoot](./imgs/kahoot.png)
 
-### Anàlisi de dades
+## Anàlisi de dades
 
 Ara que ja tens carregades les dades, prepara amb els companys alguna consulta sobre les dades, per exemple, després de llegir aquesta notícia:
 
