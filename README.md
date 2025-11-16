@@ -3,11 +3,13 @@
 
 ## Descripció
 
+<img align="left" src="./Kahoot/p-1.png" alt="Gat accidentat" width="150" style="margin-right: 15px;"/>
+
 [Cat] Dataset d'[accidents de trànsit amb víctimes a Catalunya](https://analisi.transparenciacatalunya.cat/Transport/Accidents-de-tr-nsit-amb-morts-o-ferits-greus-a-Ca/rmgc-ncpb/about_data) carregat a una base de dades (Postgres, MySql o MSSqlServer) amb objectius acadèmics. Permet treballar les consules sql (projecció, selecció, agregats, funcions amb dates, etc). Totes les dades són a una sola taula. Disponible [Kahoot](#kahoot).
 
 [Eng] Dataset of [traffic accidents with victims in Catalonia](https://analisi.transparenciacatalunya.cat/Transport/Accidents-de-tr-nsit-amb-morts-o-ferits-greus-a-Ca/rmgc-ncpb/about_data) loaded into a database (Postgres, MySQL or SQL Server) for academic purposes. Allows working with SQL queries (projection, selection, aggregates, date functions, etc). All data is in a single table. [Kahoot](#kahoot) available.
 
-![Gat accidentat](./Kahoot/p-1.png)
+<br clear="left"/>
 
 <details>
 <summary>Pot ser que hi hagi un dataset nou publicat a Dades Obertes?</summary>
