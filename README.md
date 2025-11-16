@@ -7,61 +7,28 @@ Projecte per importar i analitzar dades d'accidents de trànsit amb víctimes a 
 
 ![Gat accidentat](./Kahoot/p-1.png)
 
+
+<details>
+<summary>Pot ser que hi hagi un dataset nou publicat a Dades Obertes?</summary>
 La darrera versió de les dades es pot descarregar des de:
 
 👉 [Accidents de trànsit amb morts o ferits greus a Catalunya (Dades Obertes)](https://analisi.transparenciacatalunya.cat/Transport/Accidents-de-tr-nsit-amb-morts-o-ferits-greus-a-Ca/rmgc-ncpb/about_data)
 
 Descarrega el fitxer CSV i col·loca'l a la carpeta `Data/` si vols actualitzar les dades.
 
+</details>
+
 ---
 
 ## Com engegar l'entorn
 
-Aquest projecte suporta **PostgreSQL**, **MySQL** i **SQL Server** (Azure SQL Edge). Pots seleccionar el gestor de base de dades que vulguis utilitzar.
+Aquest projecte suporta **PostgreSQL**, **MySQL** i **SQL Server** (Azure SQL Edge). Pots seleccionar el gestor de base de dades que vulguis utilitzar mitjançant profiles de Docker Compose.
 
 ### Prerequisits
 
 - **[Docker](https://www.docker.com/)** instal·lat i en funcionament
 
-### Ús ràpid (macOS / Linux)
-
-Utilitza l'script `compose-db.sh` per seleccionar la base de dades:
-
-```bash
-# PostgreSQL (per defecte)
-./compose-db.sh --db postgres up --build
-
-# MySQL
-./compose-db.sh --db mysql up --build
-
-# SQL Server (Azure SQL Edge)
-./compose-db.sh --db sqlserver up --build
-```
-
-**Forma curta:**
-
-```bash
-./compose-db.sh postgres up --build
-./compose-db.sh mysql up --build
-./compose-db.sh sqlserver up --build
-```
-
-### Ús en Windows (PowerShell)
-
-```powershell
-# PostgreSQL
-./compose-db.ps1 -Db postgres up --build
-
-# MySQL
-./compose-db.ps1 -Db mysql up --build
-
-# SQL Server
-./compose-db.ps1 -Db sqlserver up --build
-```
-
-### Configuració manual (sense wrappers)
-
-Si prefereixes usar directament `docker compose`:
+### Engegar l'entorn amb la base de dades que vulguis
 
 ```bash
 # PostgreSQL
@@ -70,7 +37,7 @@ docker compose --profile postgres up --build
 # MySQL
 docker compose --profile mysql up --build
 
-# SQL Server
+# SQL Server (Azure SQL Edge)
 docker compose --profile sqlserver up --build
 ```
 
