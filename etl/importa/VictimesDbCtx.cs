@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+
 namespace importa;
 
 public class VictimesDbCtx : DbContext
@@ -6,7 +7,21 @@ public class VictimesDbCtx : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
-        optionsBuilder.UseNpgsql(Parametres.ConnexioPostgres);
+        switch (Parametres.DbBrandParam)
+        {
+            case Parametres.POSTGRES:
+                optionsBuilder.UseNpgsql(Parametres.ConnectionStringParam);
+                break;
+            case Parametres.MYSQL:
+                optionsBuilder.UseMySql(Parametres.ConnectionStringParam, ServerVersion.AutoDetect(Parametres.ConnectionStringParam));
+                break;
+            case Parametres.SQLSERVER:
+                optionsBuilder.UseSqlServer(Parametres.ConnectionStringParam);
+                break;
+            default:
+                var msg = $"El tipus de base de dades '{Parametres.DbBrandParam}' no és compatible, vols afegir-lo? https://github.com/ctrl-alt-d/AccidentsAmbVictimes";
+                throw new NotSupportedException(msg);
+        }
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

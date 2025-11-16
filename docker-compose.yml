@@ -25,7 +25,7 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      - ConnectionStrings__Postgres=Host=postgres;Port=5432;Username=postgres;Password=123456;Database=victimes
+      - ConnectionStringParam=Host=postgres;Port=5432;Username=postgres;Password=123456;Database=victimes
 
 volumes:
   postgres-data:
