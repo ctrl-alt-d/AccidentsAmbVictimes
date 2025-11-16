@@ -209,6 +209,7 @@ Buquem quin va ser el punt quilomètric exacte i també si al voltant d'aquell p
 <details>
 
 <summary>Consulta i resultat</summary>
+
 ```sql
 SELECT Sum(f_morts)    AS morts,
        Sum(f_victimes) AS victimes,
