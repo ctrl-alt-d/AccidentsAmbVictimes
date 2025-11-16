@@ -3,10 +3,9 @@
 
 ## Descripció
 
-Projecte per importar i analitzar dades d'accidents de trànsit amb víctimes a Catalunya.
+Esx carrega el dataset d'accidents de trànsit amb víctimes a Catalunya en una base de dades (Postgres, MySql o MSSqlServer) amb objectius acadèmics, permet treballar les consules sql (projecció, selecció, agregats, funcions amb dates, etc). Totes les dades són a una sola taula. Disponible [Kahoot](#kahoot).
 
 ![Gat accidentat](./Kahoot/p-1.png)
-
 
 <details>
 <summary>Pot ser que hi hagi un dataset nou publicat a Dades Obertes?</summary>
