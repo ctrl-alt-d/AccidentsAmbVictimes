@@ -208,14 +208,16 @@ Buquem quin va ser el punt quilomètric exacte i també si al voltant d'aquell p
 
 <summary>Consulta i resultat</summary>
 ```sql
-select
-	sum(f_morts) as morts,
-	sum(f_victimes) as victimes,
-	pk as "Punt quilomètric"
-FROM accidents
-where via='AP-7' and pk between 320 and 340
-group by via, pk
-order by 1 desc,2 desc
+SELECT Sum(f_morts)    AS morts,
+       Sum(f_victimes) AS victimes,
+       pk              AS "Punt quilomètric"
+FROM   accidents
+WHERE  via = 'AP-7'
+       AND pk BETWEEN 320 AND 340
+GROUP  BY via,
+          pk
+ORDER  BY 1 DESC,
+          2 DESC 
 ```
 
 **Resultats:**
